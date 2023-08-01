@@ -59,7 +59,7 @@ const SignUpForm = () => {
             </div>}
 
             {!loading && <form  onSubmit={handleSubmit}>
-                <div className='p-10 mt-10 w-[80vw] md:w-[60vw] lg:w-[35vw] bg-[#EDF7F2] shadow-md'>
+                <div className='p-10 mt-10 w-[80vw] md:w-[60vw] lg:w-[35vw] bg-cyan-700 shadow-md'>
                     <h1 className='text-2xl text-center my-5'>Login</h1>
                         <div className='mb-2'>
                         <input value={inputData.firstname} onChange={handleUpdate} className='w-full py-2 px-2' type='text' name='firstName' id='firstName' placeholder='First Name' />
@@ -79,7 +79,7 @@ const SignUpForm = () => {
                         <div className='mb-2'>
                         <input value={inputData.confirmpassword} onChange={handleUpdate} className='w-full py-2 px-2' type='password' name='confirmpassword' id='confirmpassword' placeholder='Confirm Password' />
                         </div>
-                    <button className='flex items-center mx-auto my-4 px-3 py-2  bg-[#C2E5D3] hover:bg-[#31C48D]' >Submit</button>
+                    <button className='flex items-center mx-auto my-4 px-3 py-2  bg-cyan-500 hover:bg-cyan-300' >Submit</button>
                 </div>
             </form>}
         </div>
