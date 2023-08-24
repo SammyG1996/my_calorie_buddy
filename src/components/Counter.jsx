@@ -98,11 +98,11 @@ const Counter = () => {
             <div className='flex items-center flex-col w-full h-[100%] bg-[#F9FCFB] animate-fade-up animate-once animate-duration-[1000ms] animate-ease-out animate-normal animate-fill-forwards'>
                 <FoodSearchForm />
                 <div className='mt-5 flex flex-row max-w-[1000px] text-[1rem]'>
-                    <h2 className=' text-cyan-700'>Totals:</h2>
-                    <p className='ml-1 mr-1'>Calories: {totalCalories}</p>
-                    <p className='ml-1 mr-1'>Protein: {totalProtein}g</p>
-                    <p className='ml-1 mr-1'>Carbs: {totalCarbs}g</p>
-                    <p className='ml-1 mr-1'>Fats: {totalFats}g</p>
+                    
+                    <p className='ml-1 mr-1'><span className='text-cyan-700'>Calories</span> {totalCalories}</p>
+                    <p className='ml-1 mr-1'><span className='text-cyan-700'>Protein:</span> {totalProtein}g</p>
+                    <p className='ml-1 mr-1'><span className='text-cyan-700'>Carbs:</span> {totalCarbs}g</p>
+                    <p className='ml-1 mr-1'><span className='text-cyan-700'>Fats:</span> {totalFats}g</p>
 
                 </div>
                 <div className='mt-5 flex flex-col w-[100%] max-w-[1000px]'>
