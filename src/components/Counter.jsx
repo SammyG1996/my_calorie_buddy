@@ -99,10 +99,10 @@ const Counter = () => {
                 <FoodSearchForm />
                 <div className='mt-5 flex flex-row max-w-[1000px] text-[1rem]'>
                     <h2 className=' text-cyan-700'>Totals:</h2>
-                    <p className='ml-3 mr-3'>Calories: {totalCalories}</p>
-                    <p className='ml-3 mr-3'>Protein: {totalProtein}</p>
-                    <p className='ml-3 mr-3'>Carbs: {totalCarbs}</p>
-                    <p className='ml-3 mr-3'>Fats: {totalFats}</p>
+                    <p className='ml-1 mr-1'>Calories: {totalCalories}</p>
+                    <p className='ml-1 mr-1'>Protein: {totalProtein}g</p>
+                    <p className='ml-1 mr-1'>Carbs: {totalCarbs}g</p>
+                    <p className='ml-1 mr-1'>Fats: {totalFats}g</p>
 
                 </div>
                 <div className='mt-5 flex flex-col w-[100%] max-w-[1000px]'>
