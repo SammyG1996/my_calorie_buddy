@@ -20,14 +20,34 @@ const Counter = () => {
 
     const navigate = useNavigate();
 
+    const updateNutrients = (items) => {
+                    // Bellow sets the totals for calories/protein/carbs/fats
+                    let calories = 0;
+                    let protein = 0;
+                    let carbs = 0;
+                    let fats = 0;
+                    items.map((log) => {
+                        calories = calories + log.calories
+                        protein = protein + log.protein
+                        carbs = carbs + log.carbs
+                        fats = fats + log.fats
+
+                    })
+                    // Now all the totals are set in state
+                    setTotalCalories(calories)
+                    setTotalProtein(protein)
+                    setTotalCarbs(carbs)
+                    setTotalFats(fats)
+    }
+
     const handleButtonClick = (id) => {
         const handleUpdate = async () => {
             try{
                 await JoblyApi.deleteItem(username, id)
-    
                 const updatedLogs = logs.filter(log => log.id !== id);
                 setLogs(updatedLogs);
-    
+                updateNutrients(updatedLogs)
+
             } catch(err){
                 console.log(err)
             }    
@@ -46,24 +66,7 @@ const Counter = () => {
                     const {items} = await JoblyApi.getItems(username, date);
                     // console.log(items)
                     setLogs(items)
-
-                    // Bellow sets the totals for calories/protein/carbs/fats
-                    let calories = 0;
-                    let protein = 0;
-                    let carbs = 0;
-                    let fats = 0;
-                    items.map((log) => {
-                        calories = calories + log.calories
-                        protein = protein + log.protein
-                        carbs = carbs + log.carbs
-                        fats = fats + log.fats
-
-                    })
-                    // Now all the totals are set in state
-                    setTotalCalories(calories)
-                    setTotalProtein(protein)
-                    setTotalCarbs(carbs)
-                    setTotalFats(fats)
+                    updateNutrients(items)
                     setLoading(false)
                 }
                 getData();
