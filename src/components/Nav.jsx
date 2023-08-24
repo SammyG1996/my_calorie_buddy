@@ -3,7 +3,7 @@ import { useState, useContext } from 'react'
 import Logo from '../assets/logo_white.png'
 import {FaBars, FaTimes} from "react-icons/fa"
 import {AiFillHome} from "react-icons/ai"
-import {BsFillPersonPlusFill, BsFillBuildingFill, BsFillPersonVcardFill} from 'react-icons/bs'
+import {BsFillPersonPlusFill, BsFillBuildingFill, BsFillPersonVcardFill, BsFillCalculatorFill} from 'react-icons/bs'
 import {CgProfile} from 'react-icons/cg'
 import {MdLogout, MdLogin} from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
@@ -71,18 +71,11 @@ const Nav = () => {
                 {isLoggedIn && <li className='flex h-[70px] px-2 hover:bg-cyan-700'>
                     <button className='flex items-center' href="/">
                         <div className='flex items-center justify-between'>
-                            <BsFillBuildingFill /><span className='pl-2'><Link to={'/companies'}>Companies</Link></span>
+                            <BsFillCalculatorFill /><span className='pl-2'><Link to={'/counter'}>Tracker</Link></span>
                         </div>
                     </button>
                 </li>}
                 
-                {isLoggedIn && <li className='flex h-[70px] px-2 hover:bg-cyan-700'>
-                    <button className='flex items-center' >
-                        <div className='flex items-center justify-between'>
-                            <BsFillPersonVcardFill /><span className='pl-2'><Link to={'/jobs'}>Jobs</Link></span>
-                        </div>
-                    </button>
-                </li>}
 
                 {isLoggedIn && <li className='flex h-[70px] px-2 hover:bg-cyan-700'>
                     <button className='flex items-center' href="/">
@@ -135,18 +128,11 @@ const Nav = () => {
                 {isLoggedIn && <li className='flex justify-center w-[100%] h-[70px] px-2 hover:bg-cyan-700'>
                     <button className='flex items-center' href="/" onClick={handleHamburgerClick}>
                         <div className='flex items-center justify-between'>
-                            <BsFillBuildingFill /><span className='pl-2'><Link to={'/companies'}>Companies</Link></span>
+                            <BsFillCalculatorFill /><span className='pl-2'><Link to={'/counter'}>Tracker</Link></span>
                         </div>
                     </button>
                 </li>}
                 
-                {isLoggedIn && <li className='flex justify-center w-[100%] h-[70px] px-2 hover:bg-cyan-700'>
-                    <button className='flex items-center' onClick={handleHamburgerClick}>
-                        <div className='flex items-center justify-between'>
-                            <BsFillPersonVcardFill /><span className='pl-2'><Link to={'/jobs'}>Jobs</Link></span>
-                        </div>
-                    </button>
-                </li>}
 
                 {isLoggedIn && <li className='flex justify-center w-[100%] h-[70px] px-2 hover:bg-cyan-700'>
                     <button className='flex items-center' onClick={handleHamburgerClick}>

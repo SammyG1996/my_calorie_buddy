@@ -1,4 +1,5 @@
 import axios from "axios";
+import apiKey from "../../config/apiKey";
 import { apiUrl } from "../../config/apiUrl";
 
 class JoblyApi {
@@ -63,6 +64,18 @@ class JoblyApi {
         }
     }
 
+    static async delete(urlPath, data = {}){
+        try {
+            // This conditional decides whether to include validation or not.
+            const res = await axios.delete(`${apiUrl}${urlPath}`, this.bearer_token_req);
+            return res
+        } catch (error) {
+            console.log(error)
+            return error
+        }
+
+    }
+
     static async login(inputData){
         const res = await this.post(`/auth/token`, inputData)
         console.log(res)
@@ -75,40 +88,16 @@ class JoblyApi {
         return res.data.token
     }  
 
-    static async getJobs(){
-        const res = await this.get(`/jobs`);
-        return res.data.jobs
-    }
-
-    static async getJobsByCompany(company){
-        const res = await this.get(`/companies/${company}`);
-        return res.data.company.to_json.jobs
-    }
-
-    static async getUserJobApplications(username){
-        console.log(username)
-        const res = await this.getWithValidation(`/users/${username}/applications`)
-        return res.data.applications
-    }
-
     static async getUserData(username){
         const res = await this.getWithValidation(`/users/${username}`);
         return res.data.user
     }
 
-    static async getCompanies(){
-        const res = await JoblyApi.get('/companies');
-        return res.data.companies
-    }
 
-    static async applyToJob(username, jobID, data){
-        const res = await this.post(`/users/${username}/jobs/${jobID}`, data, true)
-        console.log(res)
-    }
-
-    static async getFilterCompany(inputData){
-        const res = await this.get(`/companies`, {name : inputData})
-        return res.data.companies
+    static async getNutritionData(inputData){
+        const res = await axios.get(`https://api.api-ninjas.com/v1/nutrition?query=${inputData}`, {headers : {'X-Api-Key': apiKey}})
+        console.log(res.data)
+        return res.data
     }
 
     static async updateUser(username, firstName, lastName, email, password=null){
@@ -121,10 +110,21 @@ class JoblyApi {
         const res = await this.post(`/auth/register`, data)
         console.log(res)
         return res
-        console.log(res.name)
-        console.log(res.response.data.error.message[0])
+    }
 
-        
+    static async addFoodToLog(username, data){
+        const res = await this.post(`/logs/${username}`, data, true)
+        return res
+    }
+
+    static async getItems(username, date){
+        const res = await this.getWithValidation(`/logs/${username}/${date}`);
+        return res.data
+    }
+
+    static async deleteItem(username, id){
+        const res = await this.delete(`/logs/${username}/${id}`)
+        return res.data
     }
 }
 

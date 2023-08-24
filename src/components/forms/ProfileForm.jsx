@@ -36,8 +36,8 @@ const ProfileForm = ({userData, updateUserData}) => {
     return (
             <div>
                 <form  onSubmit={handleSubmit}>
-                    <div className='p-10 mt-10 w-[95vw] md:w-[80vw] lg:w-[70vw] xl:w-[55vw] bg-[#EDF7F2] shadow-md'>
-                        <h1 className='text-[#096A2E] text-[2rem] text-2xl text-center my-5'>User Information</h1>
+                    <div className='p-10 mt-10 w-[95vw] md:w-[80vw] lg:w-[70vw] xl:w-[55vw] bg-cyan-500 shadow-md'>
+                        <h1 className='text-cyan-700 text-[2rem] text-2xl text-center my-5'>User Information</h1>
                             <div className='mb-2'>
                             <input value={inputData.firstName} onChange={handleUpdate} className='w-full py-2 px-2' type='text' name='firstName' id='firstname' placeholder='First Name' />
                             </div>
@@ -56,7 +56,7 @@ const ProfileForm = ({userData, updateUserData}) => {
                             <div className='mb-2'>
                             <input value={inputData.confirmpassword} onChange={handleUpdate} className='w-full py-2 px-2' type='password' name='confirmpassword' id='confirmpassword' placeholder='Confirm Password' />
                             </div>
-                        <button className='flex items-center mx-auto my-4 px-3 py-2  bg-[#C2E5D3] hover:bg-[#31C48D]' >Update</button>
+                        <button className='flex items-center mx-auto my-4 px-3 py-2 text-white bg-cyan-700 hover:bg-cyan-900' >Update</button>
                     </div>
                 </form>
             </div>

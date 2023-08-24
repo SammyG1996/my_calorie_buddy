@@ -24,8 +24,6 @@ const LoginForm = () => {
         try{
             setLoading(true)
             const token =  await JoblyApi.login(inputData)
-            console.log(token)
-
             if(token){
                 updateToken(token);
                 updatedIsLoggedIn();
@@ -34,7 +32,7 @@ const LoginForm = () => {
                 sessionStorage.setItem("token", `${token}`)
                 sessionStorage.setItem("username", `${inputData.username}`)
                 setLoading(false)
-                navigate('/companies')
+                navigate('/counter')
             }
         } catch(err){
             setLoading(false)

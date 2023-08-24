@@ -4,7 +4,6 @@ import { IsLoggedInContext } from '../App';
 import ProfileForm from './forms/ProfileForm'
 import {BiLoader} from 'react-icons/bi'
 import { IconContext } from 'react-icons';
-import UserJobs from './UserJobs';
 import JoblyApi from './helpers/JoblyApi';
 
 const Profile = () => {
@@ -23,18 +22,6 @@ const Profile = () => {
                         // Gets the data for the profile
                         const user = await JoblyApi.getUserData(username)
                         setUserData(user);
-                        // Gets the data for job that user has applied too
-                        const applications = await JoblyApi.getUserJobApplications(username)
-                        // Sets the data for all jobs
-                        const jobs = await JoblyApi.getJobs()
-                        // // Ensures that we have an array filled with the job id's extracted from the profile axios call
-                        const jobIDs = applications.map(({job_id}) => (job_id))
-                        // Compares the applied jobs from the profile axios call with the jobs to create a piece of state that is paased downs as props
-                        jobs.map((job)=>{
-                            if(jobIDs.includes(job.id)){
-                                setJobApplications((currApplications) => ([...currApplications, job]))
-                            }
-                        })
                         setLoading(false)
                     }
                     getData();
@@ -62,7 +49,6 @@ const Profile = () => {
                 </div>}
                 {!loading && <div className='flex flex-col items-center w-full h-screen animate-fade-up animate-once animate-duration-[1000ms] animate-ease-out animate-normal animate-fill-forwards'>
                     <ProfileForm userData={userData} updateUserData={updateUserData} />
-                    <UserJobs jobApplications={jobApplications}/>
                 </div>}
 
             </div>

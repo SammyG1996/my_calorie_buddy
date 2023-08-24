@@ -5,8 +5,8 @@ import Home from './components/Home';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import { createContext, useEffect, useState } from 'react';
-import Companies from './components/Companies';
-import Jobs from './components/Jobs';
+import Counter from './components/Counter';
+import SearchData from './components/SearchData';
 import Alert from './components/Alert';
 import Profile from './components/Profile';
 import JoblyApi from './components/helpers/JoblyApi';
@@ -21,6 +21,12 @@ function App() {
   const [token, setToken] = useState(null);
   const [username, setUsername] = useState(null);
   const [alert, setAlert] = useState(null);
+  
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth() + 1; // Months are zero-based, so add 1
+  const day = currentDate.getDate();
+  const formattedDate = `${year}-${month}-${day}`;
 
   const updatedIsLoggedIn = () => {
     setIsLoggedIn(bool => !bool);
@@ -48,22 +54,22 @@ function App() {
             Authorization: `Bearer ${token}`
         }
       }
+
     }
   }, [])
 
   return (
     <div>
-      <IsLoggedInContext.Provider value={{isLoggedIn, updatedIsLoggedIn, token, updateToken, alert, updateAlert, username, updateUsername}}>
+      <IsLoggedInContext.Provider value={{isLoggedIn, updatedIsLoggedIn, token, updateToken, alert, updateAlert, username, updateUsername, formattedDate}}>
         <Nav />
         <Alert />
         <Routes>
           <Route exact path={'/'} element={<Home />} />
           <Route exact path={'/signup'} element={<SignUp />} />
           <Route exact path={'/login'} element={<Login />} />
-          <Route exact path={'/Companies'} element={<Companies />} />
-          <Route exact path={'/jobs'} element={<Jobs />} />
+          <Route exact path={'/counter'} element={<Counter />} />
+          <Route exact path={'/search'} element={<SearchData />} />
           <Route exact path={'/profile'} element={<Profile />} />
-          <Route exact path={'/companies/:company'} element={<Jobs />} />
           <Route path='*' element={<Navigate replace to='/' />} />
         </Routes>
       </IsLoggedInContext.Provider>
