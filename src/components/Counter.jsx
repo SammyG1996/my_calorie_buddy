@@ -97,17 +97,19 @@ const Counter = () => {
             {!loading && 
             <div className='flex items-center flex-col w-full h-[100%] bg-[#F9FCFB] animate-fade-up animate-once animate-duration-[1000ms] animate-ease-out animate-normal animate-fill-forwards'>
                 <FoodSearchForm />
-                <div className='mt-5 flex flex-row max-w-[1000px] text-[1rem]'>
-                    
-                    <p className='ml-1 mr-1'><span className='text-cyan-700'>Calories</span> {totalCalories}</p>
-                    <p className='ml-1 mr-1'><span className='text-cyan-700'>Protein:</span> {totalProtein}g</p>
-                    <p className='ml-1 mr-1'><span className='text-cyan-700'>Carbs:</span> {totalCarbs}g</p>
-                    <p className='ml-1 mr-1'><span className='text-cyan-700'>Fats:</span> {totalFats}g</p>
 
-                </div>
                 <div className='mt-5 flex flex-col w-[100%] max-w-[1000px]'>
                     <h1 className='text-[2rem] text-cyan-700 text-center'>Food Log: {date}</h1>
                     <DateForm date={date} setDate={setDate} />
+                    {/* <h2 className='text-[1.5rem] text-cyan-700 text-center mt-2'>Macro Totals:</h2> */}
+                    <h2 className='ml-1 mr-1 text-center text-[1.5rem] mt-2'><span className='text-cyan-700'>Calories</span> {totalCalories}</h2>
+                    <div className='mt-2 flex flex-row justify-center w-[80%%]  text-[1rem]'>
+                        
+                        <p className='ml-1 mr-1'><span className='text-cyan-700'>Protein:</span> {totalProtein}g</p>
+                        <p className='ml-1 mr-1'><span className='text-cyan-700'>Carbs:</span> {totalCarbs}g</p>
+                        <p className='ml-1 mr-1'><span className='text-cyan-700'>Fats:</span> {totalFats}g</p>
+                    </div>
+
                     {logs.map((log) => {
                         return (
                             <div key={log.id} className='bg-white p-5 m-2 shadow-md hover:shadow-xl'>
