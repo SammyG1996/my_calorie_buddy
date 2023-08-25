@@ -4,14 +4,13 @@ import { IsLoggedInContext } from '../App';
 import ProfileForm from './forms/ProfileForm'
 import {BiLoader} from 'react-icons/bi'
 import { IconContext } from 'react-icons';
-import JoblyApi from './helpers/JoblyApi';
+import NutritionApi from './helpers/NutritionApi';
 
 const Profile = () => {
-    const {isLoggedIn, updatedIsLoggedIn, token, updateToken, username} = useContext(IsLoggedInContext);
+    const {isLoggedIn, token, username} = useContext(IsLoggedInContext);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     const [userData, setUserData] = useState({})
-    const [jobApplications, setJobApplications] = useState([])
         // This will check if your logged in. If not your redirected. If it is then make API call
         useEffect(() => {
             try {
@@ -20,7 +19,7 @@ const Profile = () => {
                 } else {
                     const getData = async () => {
                         // Gets the data for the profile
-                        const user = await JoblyApi.getUserData(username)
+                        const user = await NutritionApi.getUserData(username)
                         setUserData(user);
                         setLoading(false)
                     }

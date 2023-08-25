@@ -2,7 +2,7 @@ import axios from "axios";
 import apiKey from "../../config/apiKey";
 import { apiUrl } from "../../config/apiUrl";
 
-class JoblyApi {
+class NutritionApi {
     static token;
     static bearer_token_req;
 
@@ -128,4 +128,4 @@ class JoblyApi {
     }
 }
 
-export default JoblyApi;
+export default NutritionApi;

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { IsLoggedInContext } from '../App';
 import {v4 as uuid} from 'uuid'
-import JoblyApi from './helpers/JoblyApi';
+import NutritionApi from './helpers/NutritionApi';
 import DateForm from './forms/DateForm';
 import FoodSearchForm from './forms/FoodSearchForm';
 
@@ -11,7 +11,7 @@ import FoodSearchForm from './forms/FoodSearchForm';
 
 const SearchData = () => {
     
-    const {isLoggedIn, updatedIsLoggedIn, token, updateToken, username, updateAlert, formattedDate} = useContext(IsLoggedInContext);
+    const {username, formattedDate} = useContext(IsLoggedInContext);
     const location = useLocation();
     const data = location.state;
     const [date, setDate] = useState(formattedDate)
@@ -38,7 +38,7 @@ const SearchData = () => {
                 }
                 console.log(data)
                 try {
-                        await JoblyApi.addFoodToLog(username, data);
+                        await NutritionApi.addFoodToLog(username, data);
                         navigate("/counter")
 
                     } catch (error) {

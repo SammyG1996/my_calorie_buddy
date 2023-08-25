@@ -1,29 +1,28 @@
 import React, {useState, useContext} from 'react'
 import { IsLoggedInContext } from '../../App';
-import JoblyApi from '../helpers/JoblyApi';
+import NutritionApi from '../helpers/NutritionApi';
 
+/**This form is for updating the users information. All the current users info is automatically populated into the form (except for the password) */
 const ProfileForm = ({userData, updateUserData}) => {
-    // const baseFormInfo = {username : '',firstname: '', lastname: '', email: '', password : '', confirmpassword : ''};
     const [inputData, updateInputData] = useState({...userData, password : '', confirmpassword : ''})
-    const {updatedIsLoggedIn, updateToken, username, updateAlert, updateUsername} = useContext(IsLoggedInContext)
+    const {username, updateAlert} = useContext(IsLoggedInContext)
 
-
-    
-  
+    /**This will handle the updating of state with the input data */
     const handleUpdate = (e) => {
         updateInputData(data => ({...data, [e.target.name] : e.target.value}))
     }
 
+    /**When submitted this will handle the creation of the request with the new data */
     const handleSubmit = (e) => {
         e.preventDefault();
         const {firstName, lastName, email, password, confirmpassword} = inputData;
         const updateData = async () =>{
             if(password === '' && firstName !== '' && lastName !== '' && email !== ''){
-                await JoblyApi.updateUser(username, firstName, lastName, email);
+                await NutritionApi.updateUser(username, firstName, lastName, email);
                 updateAlert('Updated your name and email')
             }
             else if(password === confirmpassword  && firstName !== '' && lastName !== '' && email !== ''){
-                await JoblyApi.updateUser(username, firstName, lastName, email, password)
+                await NutritionApi.updateUser(username, firstName, lastName, email, password)
                 updateAlert('Updated you name, email, and password')
             } else {
                 updateAlert('Passwords did not match or field one of the fields are empty')

@@ -3,7 +3,7 @@ import { IsLoggedInContext } from '../App'
 
 // This will create the alert that can be envoked on command
 const Alert = () => {
-    const {isLoggedIn, updatedIsLoggedIn, token, updateToken, alert, updateAlert} = useContext(IsLoggedInContext);
+    const {alert, updateAlert} = useContext(IsLoggedInContext);
     useEffect(()=>{
         setTimeout(()=>{
             updateAlert(null)

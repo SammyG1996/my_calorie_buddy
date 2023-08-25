@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom'
 import { IsLoggedInContext } from '../App';
 import {BiLoader} from 'react-icons/bi'
 import { IconContext } from 'react-icons';
-import JoblyApi from './helpers/JoblyApi';
+import NutritionApi from './helpers/NutritionApi';
 import FoodSearchForm from './forms/FoodSearchForm';
 import DateForm from './forms/DateForm';
 
 
 const Counter = () => {
-    const {isLoggedIn, updatedIsLoggedIn, token, updateToken, username, formattedDate} = useContext(IsLoggedInContext);
+    const {isLoggedIn, token, username, formattedDate} = useContext(IsLoggedInContext);
     const [loading, setLoading] = useState(true);
     const [logs, setLogs] = useState([]);
     const [date, setDate] = useState(formattedDate)
@@ -43,7 +43,7 @@ const Counter = () => {
     const handleButtonClick = (id) => {
         const handleUpdate = async () => {
             try{
-                await JoblyApi.deleteItem(username, id)
+                await NutritionApi.deleteItem(username, id)
                 const updatedLogs = logs.filter(log => log.id !== id);
                 setLogs(updatedLogs);
                 updateNutrients(updatedLogs)
@@ -62,18 +62,12 @@ const Counter = () => {
                 navigate("/");
             } else {
                 const getData = async () => {
-                    // const {items} = await JoblyApi.getItems();
-                    const {items} = await JoblyApi.getItems(username, date);
-                    // console.log(items)
+                    const {items} = await NutritionApi.getItems(username, date);
                     setLogs(items)
                     updateNutrients(items)
                     setLoading(false)
                 }
                 getData();
-
-
-
-
             }
         } catch (error) {
             console.log(error);

@@ -3,12 +3,12 @@ import { useState, useContext } from 'react'
 import Logo from '../assets/logo_white.png'
 import {FaBars, FaTimes} from "react-icons/fa"
 import {AiFillHome} from "react-icons/ai"
-import {BsFillPersonPlusFill, BsFillBuildingFill, BsFillPersonVcardFill, BsFillCalculatorFill} from 'react-icons/bs'
+import {BsFillPersonPlusFill, BsFillCalculatorFill} from 'react-icons/bs'
 import {CgProfile} from 'react-icons/cg'
 import {MdLogout, MdLogin} from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
 import { IsLoggedInContext } from '../App'
-import JoblyApi from './helpers/JoblyApi'
+import NutritionApi from './helpers/NutritionApi'
 
 
 
@@ -29,8 +29,8 @@ const Nav = () => {
         updateAlert('You have been succefully logged out')
         sessionStorage.removeItem('token')
         sessionStorage.removeItem('username')
-        JoblyApi.token = null;
-        JoblyApi.bearer_token_req = null;
+        NutritionApi.token = null;
+        NutritionApi.bearer_token_req = null;
         navigate('/')
     }
 
@@ -158,8 +158,6 @@ const Nav = () => {
                     </button>
                 </li>}
             </ul>
-
-
 
         </div>
     )

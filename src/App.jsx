@@ -9,7 +9,7 @@ import Counter from './components/Counter';
 import SearchData from './components/SearchData';
 import Alert from './components/Alert';
 import Profile from './components/Profile';
-import JoblyApi from './components/helpers/JoblyApi';
+import NutritionApi from './components/helpers/NutritionApi';
 
 
 
@@ -48,8 +48,8 @@ function App() {
       updateToken(token);
       updatedIsLoggedIn(true);
       updateUsername(user);
-      JoblyApi.token = token;
-      JoblyApi.bearer_token_req = {
+      NutritionApi.token = token;
+      NutritionApi.bearer_token_req = {
         headers: { 
             Authorization: `Bearer ${token}`
         }

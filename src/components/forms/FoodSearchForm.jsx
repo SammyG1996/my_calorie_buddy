@@ -1,24 +1,23 @@
-import React from 'react'
-import { useState } from 'react'
+import React from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import JoblyApi from '../helpers/JoblyApi';
+import NutritionApi from '../helpers/NutritionApi';
 
-
+/**This is a form that handles the sending of requests to the external ninja nutrition API */
 const FoodSearchForm = () => {
     const [inputData, setInputData] = useState('');
     const navigate = useNavigate();
 
     const handleChange = (e) => {
-        setInputData(e.target.value)
+        setInputData(e.target.value);
     }
     const handleSubmit = (e) => {
         e.preventDefault();
         const search = async () => {
-            const res = await JoblyApi.getNutritionData(inputData);
-            navigate('/search', {state: res})
+            const res = await NutritionApi.getNutritionData(inputData);
+            navigate('/search', {state: res});
         }
         search();
-        
     }
 
     return (

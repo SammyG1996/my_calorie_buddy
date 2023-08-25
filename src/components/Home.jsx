@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import Logo from '../assets/logo.png'
 import {BsFillPersonPlusFill} from 'react-icons/bs'
 import {MdLogin} from 'react-icons/md'
@@ -8,7 +8,7 @@ import { IsLoggedInContext } from '../App'
 
 
 const Home = () => {
-    const {isLoggedIn, updatedIsLoggedIn, token, updateToken, alert, updateAlert, username} = useContext(IsLoggedInContext);
+    const {isLoggedIn, username} = useContext(IsLoggedInContext);
 
     return (
         //  The home componenent will have a slighty slower animation that the other,2 seconds instead of 1

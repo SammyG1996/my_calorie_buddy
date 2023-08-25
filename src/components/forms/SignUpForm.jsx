@@ -1,23 +1,25 @@
 import React, {useState, useContext} from 'react';
 import { IsLoggedInContext } from '../../App';
-import JoblyApi from '../helpers/JoblyApi';
+import NutritionApi from '../helpers/NutritionApi';
 import { useNavigate } from 'react-router';
 import {BiLoader} from 'react-icons/bi'
 import { IconContext } from 'react-icons';
 
 
-
+/**This form handles the creation of a new user */
 const SignUpForm = () => {
     const baseFormInfo = {username : '',firstName: '', lastName: '', email: '', password : '', confirmpassword : ''};
     const [inputData, updateInputData] = useState(baseFormInfo)
-    const {updatedIsLoggedIn, updateToken, updateAlert, updateUsername} = useContext(IsLoggedInContext)
+    const {updateAlert} = useContext(IsLoggedInContext)
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
   
+    /**Handles the updating of data into state */
     const handleUpdate = (e) => {
       updateInputData({...inputData, [e.target.name] : e.target.value})
     }
   
+    /**Handles the submission of new user to database in order to create a new user */
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true)
@@ -26,7 +28,7 @@ const SignUpForm = () => {
             // Makes sure that no fields are blank
             if(password !== '' && confirmpassword !== '' && username !== '' && firstName !== '' && lastName !== '' && email !== ''){
                 if(password === confirmpassword){ /**confirms the user entered the correct pw */
-                    const res = await JoblyApi.createUser(username, firstName, lastName, email, password);
+                    const res = await NutritionApi.createUser(username, firstName, lastName, email, password);
                     if(res.name && res.name === 'AxiosError'){
                         // Checks to see if error meassage is in an array
                         setLoading(false)
@@ -41,7 +43,7 @@ const SignUpForm = () => {
             } 
             else {
                 setLoading(false)
-                updateAlert('Passwords did not match or field one of the fields are empty')
+                updateAlert('Passwords did not match or field one of the fields are empty'); /**If passwords did not match this shows up */
             }
         }
         createUser();

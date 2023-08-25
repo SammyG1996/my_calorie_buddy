@@ -1,12 +1,12 @@
 import React, {useContext, useState} from 'react'
 import { IsLoggedInContext } from '../../App';
 import { useNavigate } from 'react-router';
-import JoblyApi from '../helpers/JoblyApi';
+import NutritionApi from '../helpers/NutritionApi';
 import {BiLoader} from 'react-icons/bi'
 import { IconContext } from 'react-icons';
 
 
-
+/**This is a login form. It is used when a user is logging into the application. */
 const LoginForm = () => {
     const baseFormInfo = {username : '', password : ''};
     const [loading, setLoading] = useState(false);
@@ -14,6 +14,7 @@ const LoginForm = () => {
     const {updatedIsLoggedIn, updateToken, updateAlert, updateUsername} = useContext(IsLoggedInContext)
     const navigate = useNavigate();
   
+    /**Handles the control of the input data into state */
     const handleUpdate = (e) => {
       updateInputData({...inputData, [e.target.name] : e.target.value})
     }
@@ -23,7 +24,7 @@ const LoginForm = () => {
         e.preventDefault()
         try{
             setLoading(true)
-            const token =  await JoblyApi.login(inputData)
+            const token =  await NutritionApi.login(inputData)
             if(token){
                 updateToken(token);
                 updatedIsLoggedIn();
