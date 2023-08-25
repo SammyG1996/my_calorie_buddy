@@ -34,10 +34,10 @@ const Counter = () => {
 
                     })
                     // Now all the totals are set in state
-                    setTotalCalories(calories)
-                    setTotalProtein(protein)
-                    setTotalCarbs(carbs)
-                    setTotalFats(fats)
+                    setTotalCalories(calories.toFixed(1))
+                    setTotalProtein(protein.toFixed(1))
+                    setTotalCarbs(carbs.toFixed(1))
+                    setTotalFats(fats.toFixed(1))
     }
 
     const handleButtonClick = (id) => {
@@ -66,6 +66,7 @@ const Counter = () => {
                     setLogs(items)
                     updateNutrients(items)
                     setLoading(false)
+                    
                 }
                 getData();
             }
@@ -109,10 +110,10 @@ const Counter = () => {
                             <div key={log.id} className='bg-white p-5 m-2 shadow-md hover:shadow-xl'>
                                 <h2 className='text-cyan-700 text-[1.5rem]'>{log.name}</h2>
                                 <div className='flex flex-row'>
-                                    <p className='mr-3'><span className='text-cyan-700 text-[1em]'>Calories: </span>{log.calories}kcal</p>
-                                    <p className='mr-3'><span className='text-cyan-700 text-[1em]'>Protein: </span>{log.protein}g</p>
-                                    <p className='mr-3'><span className='text-cyan-700 text-[1em]'>Carbs: </span>{log.carbs}g</p>
-                                    <p><span className='text-cyan-700 text-[1em]'>Fats: </span>{log.fats}g</p>
+                                    <p className='mr-3'><span className='text-cyan-700 text-[1em]'>Calories: </span>{log.calories.toFixed(1)}kcal</p>
+                                    <p className='mr-3'><span className='text-cyan-700 text-[1em]'>Protein: </span>{log.protein.toFixed(1)}g</p>
+                                    <p className='mr-3'><span className='text-cyan-700 text-[1em]'>Carbs: </span>{log.carbs.toFixed(1)}g</p>
+                                    <p><span className='text-cyan-700 text-[1em]'>Fats: </span>{log.fats.toFixed(1)}g</p>
                                 </div>
                                 <button className='mt-2 px-2 py-1  bg-red-400 hover:bg-red-600' onClick={()=>handleButtonClick(log.id)}>Delete</button>
                             </div>
