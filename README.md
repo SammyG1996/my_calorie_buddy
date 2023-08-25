@@ -26,6 +26,6 @@ In the back end here where the technologies used:
 -	PostgreSQL Database 
 -	Jest
 
-Please feel free to look at the working application here: https://my-calorie-buddy-6c3fvdftj-sammyg1996.vercel.app/
+Please feel free to look at the working application here: https://my-calorie-buddy.vercel.app/
 
 To download the application make sure to install all dependencies using NPM install. 
