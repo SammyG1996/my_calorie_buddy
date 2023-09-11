@@ -11,7 +11,7 @@ const Alert = () => {
     }, [alert])
     return (
         <>
-            {alert && <div className='flex justify-center w-full h-[30px] bg-cyan-700'>
+            {alert && <div className='flex justify-center w-full h-[30px] bg-[#715AFF] mt-[70px]'>
                 <span className='text-[1rem] text-[#F9FCFB]'>{alert}</span>
             </div>}
         </>
