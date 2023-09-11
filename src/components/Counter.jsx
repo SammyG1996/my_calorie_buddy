@@ -94,7 +94,7 @@ const Counter = () => {
                 
 
                 <div className='bg-white bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 my-20 rounded-lg flex shadow-lg flex-col w-[98%] max-w-[750px] px-5 md:px-10 py-5'>
-                    <h1 className='text-[2rem] text-[#102E4A] text-center font-black'>Food Log: <span className='text-white'>{date}</span></h1>
+                    <h1 className='text-[1.5rem] text-[#102E4A] text-center font-black'>Food Log: <span className='text-white'>{date}</span></h1>
                     <div className='bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200  rounded-lg p-5 m-2 shadow-md flex'>
                      <FoodSearchForm />
                     </div>
