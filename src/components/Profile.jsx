@@ -36,11 +36,11 @@ const Profile = () => {
         }
 
         return (
-            <div className='flex h-[100vh]flex-col items-center'>
+            <div className='flex h-[100vh]flex-col items-center mt-20'>
                 {/* This runs while loading is happening */}
                 {loading && 
                 <div className='h-screen w-full flex justify-center'>
-                    <div className='mt-[30vh]'>
+                    <div className='h-screen w-full flex justify-center items-center'>
                         <IconContext.Provider value={{ size: '2.5rem' }}>
                             <BiLoader className='animate-spin animate-infinite animate-duration-[1500ms] animate-ease-linear animate-normal animate-fill-forwards'/>
                         </IconContext.Provider>

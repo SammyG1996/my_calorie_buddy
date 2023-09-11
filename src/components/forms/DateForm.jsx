@@ -11,8 +11,8 @@ function DateForm({date, setDate}) {
   };
 
   return (
-    <div className='flex flex-row justify-center'>
-      <h2 className='mr-2'>Select a Date:</h2>
+    <div className='flex flex-col justify-center'>
+      <h2 className='text-[#102E4A] font-bold'>Select a Date:</h2>
       <input
         type="date"
         value={selectedDate}

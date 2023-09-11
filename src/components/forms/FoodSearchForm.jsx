@@ -21,11 +21,11 @@ const FoodSearchForm = () => {
     }
 
     return (
-        <div>
+        <div className='flex mx-auto'>
             <form onSubmit={handleSubmit}>
-            <div className='flex mt-10 w-[80vw] md:w-[60vw]'>
+            <div className='flex mx-auto mt-2 w-[80vw] md:w-[60vw] max-w-[700px]'>
                 <input autoComplete='off' placeholder='Enter Food w/ Serving Size' value={inputData} onChange={handleChange} type="text" name="search" id="search" className='w-[100%] py-2 px-2 shadow-md' />
-                <button type="submit" className='flex items-center px-3 py-2 m-1 bg-cyan-500 hover:bg-cyan-700 shadow-md'>Search</button>
+                <button type="submit" className='flex items-center px-3 py-2 m-1 rounded-lg bg-[#715AFF] hover:bg-[#A682FF] shadow-md text-white'>Search</button>
             </div>            
             </form>
         </div>

@@ -77,11 +77,11 @@ const Counter = () => {
     }, [date])
     
     return (
-        <div>
+        <div className='flex justify-center items-center w-full h-screen'>
             {/* This runs while loading is happening */}
             {loading && 
-            <div className='h-screen w-full flex justify-center'>
-                <div className='mt-[30vh]'>
+            <div className='flex justify-center'>
+                <div className=''>
                     <IconContext.Provider value={{ size: '2.5rem' }}>
                         <BiLoader className='animate-spin animate-infinite animate-duration-[1500ms] animate-ease-linear animate-normal animate-fill-forwards'/>
                     </IconContext.Provider>
@@ -90,32 +90,42 @@ const Counter = () => {
 
             {/* This will display after loading */}
             {!loading && 
-            <div className='flex items-center flex-col w-full h-[100%] bg-[#F9FCFB] animate-fade-up animate-once animate-duration-[1000ms] animate-ease-out animate-normal animate-fill-forwards'>
-                <FoodSearchForm />
+            <div className='mt-10 flex items-center flex-col w-full h-screen animate-fade-up animate-once animate-duration-[1000ms] animate-ease-out animate-normal animate-fill-forwards'>
+                
 
-                <div className='mt-5 flex flex-col w-[100%] max-w-[1000px]'>
-                    <h1 className='text-[2rem] text-cyan-700 text-center'>Food Log: {date}</h1>
-                    <DateForm date={date} setDate={setDate} />
+                <div className='bg-white bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 my-20 rounded-lg flex shadow-lg flex-col w-[90%] max-w-[750px] py-5'>
+                    <h1 className='text-[2rem] text-[#102E4A] text-center font-black'>Food Log: <span className='text-white'>{date}</span></h1>
+                    <div className='bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200  rounded-lg p-5 m-2 shadow-md flex'>
+                     <FoodSearchForm />
+                    </div>
+                    
+                    
                     {/* <h2 className='text-[1.5rem] text-cyan-700 text-center mt-2'>Macro Totals:</h2> */}
-                    <h2 className='ml-1 mr-1 text-center text-[1.5rem] mt-2'><span className='text-cyan-700'>Calories</span> {totalCalories}</h2>
-                    <div className='mt-2 flex flex-row justify-center w-[80%%]  text-[1rem]'>
-                        
-                        <p className='ml-1 mr-1'><span className='text-cyan-700'>Protein:</span> {totalProtein}g</p>
-                        <p className='ml-1 mr-1'><span className='text-cyan-700'>Carbs:</span> {totalCarbs}g</p>
-                        <p className='ml-1 mr-1'><span className='text-cyan-700'>Fats:</span> {totalFats}g</p>
+
+                    <div className='bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-5 m-2 shadow-md flex flex-row justify-center px-5 mt-1 text-[1rem]'>
+                        <p className='ml-1 mr-1 text-[#102E4A]'><span className='text-[#715AFF] font-black'>Calories:</span> {totalCalories}g</p>
+                        <p className='ml-1 mr-1 text-[#102E4A]'><span className='text-[#715AFF] font-black'>Protein:</span> {totalProtein}g</p>
+                        <p className='ml-1 mr-1 text-[#102E4A]'><span className='text-[#715AFF] font-black'>Carbs:</span> {totalCarbs}g</p>
+                        <p className='ml-1 mr-1 text-[#102E4A]'><span className='text-[#715AFF] font-black'>Fats:</span> {totalFats}g</p>
+                    </div>
+
+                    <div className='bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-5 m-2 shadow-md flex justify-center items-center mt-1 mb-5'>
+                        <DateForm date={date} setDate={setDate} />
                     </div>
 
                     {logs.map((log) => {
                         return (
-                            <div key={log.id} className='bg-white p-5 m-2 shadow-md hover:shadow-xl'>
-                                <h2 className='text-cyan-700 text-[1.5rem]'>{log.name}</h2>
-                                <div className='flex flex-row'>
-                                    <p className='mr-3'><span className='text-cyan-700 text-[1em]'>Calories: </span>{log.calories.toFixed(1)}kcal</p>
-                                    <p className='mr-3'><span className='text-cyan-700 text-[1em]'>Protein: </span>{log.protein.toFixed(1)}g</p>
-                                    <p className='mr-3'><span className='text-cyan-700 text-[1em]'>Carbs: </span>{log.carbs.toFixed(1)}g</p>
-                                    <p><span className='text-cyan-700 text-[1em]'>Fats: </span>{log.fats.toFixed(1)}g</p>
+                            <div key={log.id} className='bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200 mt-1 rounded-lg p-5 m-2 shadow-md flex mb-1'>
+                                <div className='flex flex-col'>
+                                    <h2 className='text-[#102E4A] text-[1.5rem]'>{log.name}</h2>
+                                    <div className='flex flex-row items-end'>
+                                        <p className='mr-3'><span className='text-[#715AFF] text-[1em]'>Calories: </span>{log.calories.toFixed(1)}kcal</p>
+                                        <p className='mr-3'><span className='text-[#715AFF] text-[1em]'>Protein: </span>{log.protein.toFixed(1)}g</p>
+                                        <p className='mr-3'><span className='text-[#715AFF] text-[1em]'>Carbs: </span>{log.carbs.toFixed(1)}g</p>
+                                        <p><span className='text-[#715AFF] text-[1em]'>Fats: </span>{log.fats.toFixed(1)}g</p>
+                                    </div>
+                                    <button className='mt-2 px-2 py-1 w-[75px] bg-[#715AFF] hover:bg-[#A682FF] shadow-md rounded-lg text-white' onClick={()=>handleButtonClick(log.id)}>Delete</button>
                                 </div>
-                                <button className='mt-2 px-2 py-1  bg-red-400 hover:bg-red-600' onClick={()=>handleButtonClick(log.id)}>Delete</button>
                             </div>
                         )
                     })}

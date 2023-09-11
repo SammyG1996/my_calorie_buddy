@@ -5,6 +5,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 
 body{
+    height: 100vh;
     font-family: 'Poppins', sans-serif;
-    background-color: #F9FCFB;
+    background: rgb(85,193,255);
+    background: linear-gradient(90deg, rgba(85,193,255,1) 0%, rgba(111,98,255,1) 100%);
+  
 }

@@ -35,8 +35,8 @@ const ProfileForm = ({userData, updateUserData}) => {
     return (
             <div>
                 <form  onSubmit={handleSubmit}>
-                    <div className='p-10 mt-10 w-[95vw] md:w-[80vw] lg:w-[70vw] xl:w-[55vw] bg-cyan-500 shadow-md'>
-                        <h1 className='text-cyan-700 text-[2rem] text-2xl text-center my-5'>User Information</h1>
+                    <div className='p-10 mt-10 w-[95vw] md:w-[80vw] lg:w-[70vw] xl:w-[55vw] bg-white bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 my-20 rounded-lg shadow-lg flex flex-col max-w-[750px] py-5'>
+                        <h1 className='text-3xl text-center my-5 text-white font-black'>User Information</h1>
                             <div className='mb-2'>
                             <input value={inputData.firstName} onChange={handleUpdate} className='w-full py-2 px-2' type='text' name='firstName' id='firstname' placeholder='First Name' />
                             </div>
@@ -55,7 +55,7 @@ const ProfileForm = ({userData, updateUserData}) => {
                             <div className='mb-2'>
                             <input value={inputData.confirmpassword} onChange={handleUpdate} className='w-full py-2 px-2' type='password' name='confirmpassword' id='confirmpassword' placeholder='Confirm Password' />
                             </div>
-                        <button className='flex items-center mx-auto my-4 px-3 py-2 text-white bg-cyan-700 hover:bg-cyan-900' >Update</button>
+                        <button className='flex items-center mx-auto my-4 px-3 py-2 rounded-lg bg-[#715AFF] hover:bg-[#A682FF] shadow-md text-white' >Update</button>
                     </div>
                 </form>
             </div>

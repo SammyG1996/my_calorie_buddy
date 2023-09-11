@@ -49,28 +49,34 @@ const SearchData = () => {
         }
    
     return (
-        <div className='bg-[#F9FCFB] w-full h-screen'>
-            <div className='flex justify-center w-full'>
-                <FoodSearchForm />
+        <div className='w-full h-screen'>
+            <div className='flex mt-10 justify-center w-full'>
+                <div className='flex mt-20 bg-white bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-5 m-2 shadow-lg w-[100%] max-w-[750px]'>
+                    <FoodSearchForm />
+                </div>
+                
             </div>
             
             {/* This will display after loading */}
-                <div className='flex justify-center w-full bg-[#F9FCFB]'>
+                <div className='flex justify-center w-full'>
                     
-                    <div className='flex flex-col max-w-[1000px]'>
+                    <div className='flex flex-col w-full max-w-[750px]'>
                         {/* Animation needs to be below so that way it occurs even when going between /jobs and /companies/job-handle */}
-                        {data.length === 0 ? <h2 className='m-5 text-cyan-700 text-[1.5rem]'>No Results, Please Try Again</h2> : data.map((item) => {
+                        {data.length === 0 ? <h2 className='m-5 text-[#102E4A] text-[1.5rem]'>No Results, Please Try Again</h2> : data.map((item) => {
                             return (
-                                <div key={uuid()} className='flex flex-col bg-white p-5 m-5 shadow-md hover:shadow-xl animate-fade-up animate-once animate-duration-[1000ms] animate-ease-out animate-normal animate-fill-forwards'>
-                                    <h2 className='ml-2 text-cyan-700 text-[1.5rem]'>{item.name}</h2>
-                                    <div className='flex items-center justify-center h-full'>
-                                        <p className='m-2'><span className='text-cyan-700 text-[1rem]'>Calories:</span> {item.calories}</p>
-                                        <p className='m-2'><span className='text-cyan-700 text-[1rem]'>Protein:</span> {item.protein_g}g</p>
-                                        <p className='m-2'><span className='text-cyan-700 text-[1rem]'>Carb:</span> {item.carbohydrates_total_g}g</p>
-                                        <p className='m-2'><span className='text-cyan-700 text-[1rem]'>Fat:</span> {item.fat_total_g}g</p>
-                                        <p className='m-2'><span className='text-cyan-700 text-[1rem]'>Serving Size:</span> {item.serving_size_g}g</p>
+                                <div key={uuid()} className='flex flex-col bg-white bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-5 m-2 shadow-lg animate-fade-up animate-once animate-duration-[1000ms] animate-ease-out animate-normal animate-fill-forwards '>
+                                    <h2 className='ml-2 text-[#102E4A] text-[1.5rem]'>{item.name}</h2>
+                                    <div className='flex items-center justify-center h-full bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-2 m-2 shadow-md mt-1 mb-1'>
+                                        <p className='m-2 text-[#102E4A]'><span className='text-[#715AFF] text-[1rem]'>Calories:</span> {item.calories}</p>
+                                        <p className='m-2 text-[#102E4A]'><span className='text-[#715AFF] text-[1rem]'>Protein:</span> {item.protein_g}g</p>
+                                        <p className='m-2 text-[#102E4A]'><span className='text-[#715AFF] text-[1rem]'>Carb:</span> {item.carbohydrates_total_g}g</p>
+                                        <p className='m-2 text-[#102E4A]'><span className='text-[#715AFF] text-[1rem]'>Fat:</span> {item.fat_total_g}g</p>
+                                        <p className='m-2 text-[#102E4A]'><span className='text-[#715AFF] text-[1rem]'>Serving Size:</span> {item.serving_size_g}g</p>
                                     </div>
-                                    <DateForm date={date} setDate={setDate} />
+                                    <div className='bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-2 m-2 shadow-md flex justify-center items-center mt-1'>
+                                        <DateForm date={date} setDate={setDate} />
+                                    </div>
+                                    
                                     <button data-name={item.name} 
                                     data-calories={item.calories} 
                                     data-protein={item.protein_g} 
@@ -78,7 +84,7 @@ const SearchData = () => {
                                     data-fats={item.fat_total_g} 
                                     data-serving={item.serving_size_g} 
                                     onClick={handleButtonClick} 
-                                    className='flex items-center mx-auto my-4 px-3 py-2  bg-cyan-500 hover:bg-cyan-700'>Add</button>
+                                    className='flex items-center mx-auto my-4 px-3 py-2   bg-[#715AFF] hover:bg-[#A682FF] shadow-md rounded-lg text-white'>Add</button>
                                 </div>
                             )
                         })}

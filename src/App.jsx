@@ -59,7 +59,7 @@ function App() {
   }, [])
 
   return (
-    <div>
+    <div className='h-screen'>
       <IsLoggedInContext.Provider value={{isLoggedIn, updatedIsLoggedIn, token, updateToken, alert, updateAlert, username, updateUsername, formattedDate}}>
         <Nav />
         <Alert />

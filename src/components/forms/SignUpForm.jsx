@@ -53,7 +53,7 @@ const SignUpForm = () => {
         <div>
             {loading && 
             <div className='h-screen w-full flex justify-center'>
-                    <div className='mt-[30vh]'>
+                    <div className='justify-center items-center'>
                         <IconContext.Provider value={{ size: '2.5rem' }}>
                             <BiLoader className='animate-spin animate-infinite animate-duration-[1500ms] animate-ease-linear animate-normal animate-fill-forwards'/>
                         </IconContext.Provider>
@@ -61,8 +61,8 @@ const SignUpForm = () => {
             </div>}
 
             {!loading && <form  onSubmit={handleSubmit}>
-                <div className='p-10 mt-10 w-[80vw] md:w-[60vw] lg:w-[35vw] bg-cyan-700 shadow-md'>
-                    <h1 className='text-2xl text-center my-5'>Login</h1>
+                <div className='bg-white bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-10 mt-10 w-[80vw] md:w-[60vw] lg:w-[35vw] shadow-md'>
+                    <h1 className='text-2xl text-center my-5 text-white font-black'>Login</h1>
                         <div className='mb-2'>
                         <input value={inputData.firstname} onChange={handleUpdate} className='w-full py-2 px-2' type='text' name='firstName' id='firstName' placeholder='First Name' />
                         </div>
@@ -81,7 +81,7 @@ const SignUpForm = () => {
                         <div className='mb-2'>
                         <input value={inputData.confirmpassword} onChange={handleUpdate} className='w-full py-2 px-2' type='password' name='confirmpassword' id='confirmpassword' placeholder='Confirm Password' />
                         </div>
-                    <button className='flex items-center mx-auto my-4 px-3 py-2  bg-cyan-500 hover:bg-cyan-300' >Submit</button>
+                    <button className='flex items-center mx-auto my-4 px-3 py-2  rounded-lg bg-[#715AFF] hover:bg-[#A682FF] shadow-md text-white' >Submit</button>
                 </div>
             </form>}
         </div>
