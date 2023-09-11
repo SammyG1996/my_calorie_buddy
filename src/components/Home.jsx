@@ -57,7 +57,7 @@ const Home = () => {
             </div>}
 
 
-            {!loading && <div className='bg-white bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 p-10 shadow-xl rounded-lg h-[50vh] md:h-[60vh] max-w-[1000px] w-[90vw] md:w-[50vw]  flex justify-center items-center animate-fade-up animate-once animate-duration-[2000ms] animate-ease-out animate-normal animate-fill-forwards'>
+            {!loading && <div className='bg-white bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 p-5 md:p-10 shadow-xl rounded-lg h-[50vh] md:h-[60vh] max-w-[1000px] w-[90vw] md:w-[50vw]  flex justify-center items-center animate-fade-up animate-once animate-duration-[2000ms] animate-ease-out animate-normal animate-fill-forwards'>
                 <div>
                     <img className='w-[100vw] mx-auto md:w-[35vw]' src={Logo} alt="logo img" />
                     {isLoggedIn ? <h1 className='text-center mt-5 mb-2 text-xl md:text-2xl text-white'>Welcome Back {username}</h1> : <h1 className='text-center mt-5 mb-2 text-2xl md:text-3xl text-white'>Meet your new buddy!</h1>}
@@ -75,13 +75,20 @@ const Home = () => {
                                 <MdLogin /><span className='pl-2'><Link to={'/login'}>Login</Link></span>
                             </div>
                         </button>}
-                        {!isLoggedIn && <button className='flex items-center rounded-lg px-3 py-2 m-1 text-white bg-[#715AFF] hover:bg-[#A682FF] shadow-md' >
+
+                        {!isLoggedIn && <button className='flex items-center rounded-lg px-3 py-2 my-1 mx-auto text-white bg-[#715AFF] hover:bg-[#A682FF] shadow-md' >
                             <div className='flex items-center justify-between' onClick={handleDemoClick}>
                                 <BsFillMouseFill /><span className='pl-2'>Demo</span>
                             </div>
                         </button>}
 
                     </div>
+
+                    {/* {!isLoggedIn && <button className='flex items-center rounded-lg px-3 py-2 my-2 mx-auto text-white bg-[#715AFF] hover:bg-[#A682FF] shadow-md' >
+                            <div className='flex items-center justify-between' onClick={handleDemoClick}>
+                                <BsFillMouseFill /><span className='pl-2'>Demo</span>
+                            </div>
+                    </button>} */}
                     
                 </div>
 
