@@ -76,7 +76,7 @@ const Home = () => {
                             </div>
                         </button>}
 
-                        {!isLoggedIn && <button className='flex items-center rounded-lg px-3 py-2 my-1 text-white bg-[#715AFF] hover:bg-[#A682FF] shadow-md' >
+                        {!isLoggedIn && <button className='flex items-center rounded-lg px-3 py-2 m-1 text-white bg-[#715AFF] hover:bg-[#A682FF] shadow-md' >
                             <div className='flex items-center justify-between' onClick={handleDemoClick}>
                                 <BsFillMouseFill /><span className='pl-2'>Demo</span>
                             </div>
