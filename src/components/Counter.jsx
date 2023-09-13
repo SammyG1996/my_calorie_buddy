@@ -6,6 +6,7 @@ import { IconContext } from 'react-icons';
 import NutritionApi from './helpers/NutritionApi';
 import FoodSearchForm from './forms/FoodSearchForm';
 import DateForm from './forms/DateForm';
+import Datepicker from "react-tailwindcss-datepicker"; 
 
 
 const Counter = () => {
@@ -17,8 +18,17 @@ const Counter = () => {
     const [totalProtein, setTotalProtein] = useState(0)
     const [totalCarbs, setTotalCarbs] = useState(0)
     const [totalFats, setTotalFats] = useState(0)
+    const [value, setValue] = useState({ 
+        startDate: null,
+        endDate: null 
+        }); 
 
     const navigate = useNavigate();
+        
+    const handleValueChange = (newValue) => {
+        setValue(newValue); 
+        setDate(newValue.startDate)
+        } 
 
     const updateNutrients = (items) => {
                     // Bellow sets the totals for calories/protein/carbs/fats
@@ -94,7 +104,20 @@ const Counter = () => {
                 
 
                 <div className='bg-white bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 my-20 rounded-lg flex shadow-lg flex-col w-[98%] max-w-[750px] px-5 md:px-10 py-5'>
-                    <h1 className='text-[1.5rem] text-[#102E4A] text-center font-black'>Food Log: <span className='text-white'>{date}</span></h1>
+                    <div className='flex flex-row justify-center'>
+                        <h1 className='text-[1.5rem] text-[#102E4A] text-center font-black'>Food Log:</h1>
+                        <div className='w-[150px] mx-2'>
+                            <Datepicker 
+                                asSingle={true} 
+                                value={value} 
+                                onChange={handleValueChange} 
+                                placeholder={date}
+                                /> 
+                        </div>
+
+                    </div>
+
+                    
                     <div className='bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200  rounded-lg p-5 m-2 shadow-md flex'>
                      <FoodSearchForm />
                     </div>
@@ -110,7 +133,7 @@ const Counter = () => {
                     </div>
 
                     <div className='bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-5 m-2 shadow-md flex justify-center items-center mt-1 mb-5'>
-                        <DateForm date={date} setDate={setDate} />
+                        {/* <DateForm date={date} setDate={setDate} /> */}
                     </div>
 
                     {logs.map((log) => {

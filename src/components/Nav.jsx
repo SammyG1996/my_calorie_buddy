@@ -77,7 +77,7 @@ const Nav = () => {
                 </li>}
                 
 
-                {isLoggedIn && username!== 'demo' && <li className='flex h-[70px] px-2 hover:bg-[#A682FF]'>
+                {isLoggedIn &&  <li className='flex h-[70px] px-2 hover:bg-[#A682FF]'>
                     <button className='flex items-center' href="/">
                         <div className='flex items-center justify-between'>
                             <CgProfile /><span className='pl-2'><Link to={'/profile'}>Profile</Link></span>
@@ -134,7 +134,7 @@ const Nav = () => {
                 </li>}
                 
 
-                {isLoggedIn && username!== 'demo' && <li className='flex justify-center w-[100%] h-[70px] px-2 hover:bg-[#A682FF]'>
+                {isLoggedIn && <li className='flex justify-center w-[100%] h-[70px] px-2 hover:bg-[#A682FF]'>
                     <button className='flex items-center' onClick={handleHamburgerClick}>
                         <div className='flex items-center justify-between'>
                             <CgProfile /><span className='pl-2'><Link to={'/profile'}>Profile</Link></span>

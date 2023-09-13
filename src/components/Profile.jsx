@@ -13,9 +13,6 @@ const Profile = () => {
     const [userData, setUserData] = useState({})
         // This will check if your logged in. If not your redirected. If it is then make API call
         useEffect(() => {
-            if(username === 'demo'){
-                navigate("/");
-            }
             try {
                 if(!token || !isLoggedIn){
                     navigate("/");

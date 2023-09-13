@@ -34,7 +34,7 @@ const ProfileForm = ({userData, updateUserData}) => {
   
     return (
             <div>
-                <form  onSubmit={handleSubmit}>
+                {username !== 'demo' && <form  onSubmit={handleSubmit}>
                     <div className='p-10 mt-10 w-[95vw] md:w-[80vw] lg:w-[70vw] xl:w-[55vw] bg-white bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 my-20 rounded-lg shadow-lg flex flex-col max-w-[750px] py-5'>
                         <h1 className='text-3xl text-center my-5 text-white font-black'>User Information</h1>
                             <div className='mb-2'>
@@ -57,7 +57,31 @@ const ProfileForm = ({userData, updateUserData}) => {
                             </div>
                         <button className='flex items-center mx-auto my-4 px-3 py-2 rounded-lg bg-[#715AFF] hover:bg-[#A682FF] shadow-md text-white' >Update</button>
                     </div>
-                </form>
+                </form>}
+                {username === 'demo' && <form  onSubmit={handleSubmit}>
+                    <div className='p-10 mt-10 w-[95vw] md:w-[80vw] lg:w-[70vw] xl:w-[55vw] bg-white bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 my-20 rounded-lg shadow-lg flex flex-col max-w-[750px] py-5'>
+                        <h1 className='text-3xl text-center my-5 text-white font-black'>User Information</h1>
+                            <div className='mb-2'>
+                            <input readOnly value={inputData.firstName} onChange={handleUpdate} className='w-full py-2 px-2' type='text' name='firstName' id='firstname' placeholder='First Name' />
+                            </div>
+                            <div className='mb-2'>
+                            <input readOnly value={inputData.lastName} onChange={handleUpdate} className='w-full py-2 px-2' type='text' name='lastName' id='lastname' placeholder='Last Name' />
+                            </div>
+                            <div className='mb-2'>
+                            <input readOnly value={inputData.username} onChange={handleUpdate} className='w-full py-2 px-2' type='text' name='username' id='username' placeholder='Username' />
+                            </div>
+                            <div className='mb-2'>
+                            <input readOnly value={inputData.email} onChange={handleUpdate} className='w-full py-2 px-2' type='email' name='email' id='email' placeholder='Email' />
+                            </div>
+                            <div className='mb-2'>
+                            <input readOnly value={inputData.password} onChange={handleUpdate} className='w-full py-2 px-2' type='password' name='password' id='password' placeholder='Password' />
+                            </div>
+                            <div className='mb-2'>
+                            <input readOnly value={inputData.confirmpassword} onChange={handleUpdate} className='w-full py-2 px-2' type='password' name='confirmpassword' id='confirmpassword' placeholder='Confirm Password' />
+                            </div>
+                            <p className='text-center mt-5 text-[#715AFF]'>This is a demo therefore information cannot be edited</p>
+                    </div>
+                </form>}
             </div>
     )
 }
