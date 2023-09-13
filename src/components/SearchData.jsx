@@ -87,7 +87,7 @@ const SearchData = () => {
                                             asSingle={true} 
                                             value={value} 
                                             onChange={handleValueChange}
-                                            onFocus={(e) => e.target.readOnly = true}
+                                            onClick={(e) => e.target.readOnly = true}
                                             /> 
                                     </div>
                                     
