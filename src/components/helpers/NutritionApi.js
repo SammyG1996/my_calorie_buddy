@@ -88,6 +88,17 @@ class NutritionApi {
         return res.data.token
     }  
 
+    static async loginOAuth(jwtToken){
+        const res = await this.post(`/auth/oauth`, jwtToken)
+        this.token = res.data.token
+        this.bearer_token_req = {
+            headers: { 
+                Authorization: `Bearer ${this.token}`
+            }
+        }
+        return {token: res.data.token, username : res.data.username}
+    }
+
     static async getUserData(username){
         const res = await this.getWithValidation(`/users/${username}`);
         return res.data.user
@@ -96,7 +107,6 @@ class NutritionApi {
 
     static async getNutritionData(inputData){
         const res = await axios.get(`https://api.api-ninjas.com/v1/nutrition?query=${inputData}`, {headers : {'X-Api-Key': apiKey}})
-        console.log(res.data)
         return res.data
     }
 

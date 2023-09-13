@@ -10,6 +10,8 @@ import SearchData from './components/SearchData';
 import Alert from './components/Alert';
 import Profile from './components/Profile';
 import NutritionApi from './components/helpers/NutritionApi';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import {googleKey, googleSecret} from '../src/config/googleOauth'
 
 
 
@@ -60,6 +62,7 @@ function App() {
 
   return (
     <div className='h-screen'>
+      <GoogleOAuthProvider clientId={googleKey}>
       <IsLoggedInContext.Provider value={{isLoggedIn, updatedIsLoggedIn, token, updateToken, alert, updateAlert, username, updateUsername, formattedDate}}>
         <Nav />
         <Alert />
@@ -73,6 +76,7 @@ function App() {
           <Route path='*' element={<Navigate replace to='/' />} />
         </Routes>
       </IsLoggedInContext.Provider>
+      </GoogleOAuthProvider>
     </div>
   );
 }

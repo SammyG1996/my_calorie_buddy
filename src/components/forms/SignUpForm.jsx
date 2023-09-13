@@ -4,12 +4,15 @@ import NutritionApi from '../helpers/NutritionApi';
 import { useNavigate } from 'react-router';
 import {BiLoader} from 'react-icons/bi'
 import { IconContext } from 'react-icons';
+import { GoogleLogin } from '@react-oauth/google';
+import jwt_decode from "jwt-decode";
 
 
 /**This form handles the creation of a new user */
 const SignUpForm = () => {
     const baseFormInfo = {username : '',firstName: '', lastName: '', email: '', password : '', confirmpassword : ''};
-    const [inputData, updateInputData] = useState(baseFormInfo)
+    const [inputData, updateInputData] = useState(baseFormInfo);
+    const [outhAlert, updateOauthAlert] = useState(false)
     const {updateAlert} = useContext(IsLoggedInContext)
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -32,21 +35,43 @@ const SignUpForm = () => {
                     if(res.name && res.name === 'AxiosError'){
                         // Checks to see if error meassage is in an array
                         setLoading(false)
-                        Array.isArray(res.response.data.error.message) ? updateAlert(res.response.data.error.message[0]) : updateAlert(res.response.data.error.message);
+                        let alert;
+                        Array.isArray(res.response.data.error.message) ? alert = res.response.data.error.message[0] : alert = res.response.data.error.message;
+                        updateAlert(alert)
+                        if(alert.includes('already has an account, please sign in')){
+                            navigate('/login')
+                        }
+
                     } else if(res.status === 201){ /**if there is no error this will run */
                         setLoading(false)
                         updateAlert('User created')
                         navigate('/login')
 
                     }
+                } else {
+                    setLoading(false)
+                    updateAlert('Passwords did not match'); /**If passwords did not match this shows up */
                 }
             } 
             else {
                 setLoading(false)
-                updateAlert('Passwords did not match or field one of the fields are empty'); /**If passwords did not match this shows up */
+                updateAlert('Passwords did not match or one of the fields are empty'); /**If passwords did not match this shows up */
             }
         }
         createUser();
+    }
+
+    const handleOAuthSubmit = (credentialResponse) => {
+        const {credential} = credentialResponse;
+        const decodedJWT = jwt_decode(credential);
+      
+        updateInputData({username : decodedJWT.email,
+                        firstName: decodedJWT.given_name, 
+                        lastName: decodedJWT.family_name, 
+                        email: decodedJWT.email, 
+                        password : '', 
+                        confirmpassword : ''})
+        updateOauthAlert(true)
     }
 
     return (
@@ -61,27 +86,42 @@ const SignUpForm = () => {
             </div>}
 
             {!loading && <form  onSubmit={handleSubmit}>
-                <div className='bg-white bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-10 mt-10 w-[80vw] md:w-[60vw] lg:w-[35vw] shadow-md'>
-                    <h1 className='text-2xl text-center my-5 text-white font-black'>Login</h1>
+                <div className='bg-white bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-10 mt-10 w-[80vw] md:w-[60vw] lg:w-[30vw] shadow-md flex flex-col items-center'>
+                    <h1 className='text-2xl text-center my-5 text-white font-black'>Sign Up</h1>
+                    {outhAlert && <p className='text-sm text-center text-[#715AFF] font-black'>You information has been auto filled.</p> }
+                    {outhAlert && <p className='text-sm text-center text-[#715AFF] font-black'>Please enter a password and submit.</p> }
+
+                        {!outhAlert && <div className='mb-2'>
+                         <input value={inputData.firstName} onChange={handleUpdate} className='w-[250px] py-2 px-2' type='text' name='firstName' id='firstName' placeholder='First Name' />
+                        </div>}
+
+                        {!outhAlert && <div className='mb-2'>
+                        <input value={inputData.lastName} onChange={handleUpdate} className='w-[250px] py-2 px-2' type='text' name='lastName' id='lastName' placeholder='Last Name' />
+                        </div>}
+
+                        {!outhAlert &&<div className='mb-2'>
+                        <input value={inputData.username} onChange={handleUpdate} className='w-[250px] py-2 px-2' type='text' name='username' id='username' placeholder='Username' />
+                        </div>}
+
+                        {!outhAlert &&<div className='mb-2'>
+                        <input value={inputData.email} onChange={handleUpdate} className='w-[250px] py-2 px-2' type='email' name='email' id='email' placeholder='Email' />
+                        </div>}
+
                         <div className='mb-2'>
-                        <input value={inputData.firstname} onChange={handleUpdate} className='w-full py-2 px-2' type='text' name='firstName' id='firstName' placeholder='First Name' />
+                        <input value={inputData.password} onChange={handleUpdate} className='w-[250px] py-2 px-2' type='password' name='password' id='password' placeholder='Password' />
                         </div>
                         <div className='mb-2'>
-                        <input value={inputData.lastname} onChange={handleUpdate} className='w-full py-2 px-2' type='text' name='lastName' id='lastName' placeholder='Last Name' />
+                        <input value={inputData.confirmpassword} onChange={handleUpdate} className='w-[250px] py-2 px-2' type='password' name='confirmpassword' id='confirmpassword' placeholder='Confirm Password' />
                         </div>
-                        <div className='mb-2'>
-                        <input value={inputData.username} onChange={handleUpdate} className='w-full py-2 px-2' type='text' name='username' id='username' placeholder='Username' />
-                        </div>
-                        <div className='mb-2'>
-                        <input value={inputData.email} onChange={handleUpdate} className='w-full py-2 px-2' type='email' name='email' id='email' placeholder='Email' />
-                        </div>
-                        <div className='mb-2'>
-                        <input value={inputData.password} onChange={handleUpdate} className='w-full py-2 px-2' type='password' name='password' id='password' placeholder='Password' />
-                        </div>
-                        <div className='mb-2'>
-                        <input value={inputData.confirmpassword} onChange={handleUpdate} className='w-full py-2 px-2' type='password' name='confirmpassword' id='confirmpassword' placeholder='Confirm Password' />
-                        </div>
+                        {!outhAlert &&<GoogleLogin
+                            size='large'
+                            width='250px'
+                            text='signup_with'
+                            onSuccess={ (credentialResponse) => handleOAuthSubmit(credentialResponse)}
+                            onError={ () => updateAlert('Login Failed')}
+                        />}
                     <button className='flex items-center mx-auto my-4 px-3 py-2  rounded-lg bg-[#715AFF] hover:bg-[#A682FF] shadow-md text-white' >Submit</button>
+                    <a class="hover:cursor-pointer hover:text-[#715AFF] underline text-xs " onClick={() => (navigate('/login'))}>Or Login Instead</a>
                 </div>
             </form>}
         </div>

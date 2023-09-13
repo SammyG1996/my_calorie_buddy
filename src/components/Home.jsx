@@ -24,7 +24,6 @@ const Home = () => {
             if(token){
                 updateToken(token);
                 updatedIsLoggedIn();
-                updateAlert(null);
                 updateUsername('demo')
                 sessionStorage.setItem("token", `${token}`)
                 sessionStorage.setItem("username", `demo`)
