@@ -5,7 +5,6 @@ import NutritionApi from '../helpers/NutritionApi';
 import {BiLoader} from 'react-icons/bi'
 import { IconContext } from 'react-icons';
 import { GoogleLogin } from '@react-oauth/google';
-import jwt_decode from "jwt-decode";
 
 
 
@@ -45,6 +44,11 @@ const LoginForm = () => {
         }
     }
 
+    /**
+     * This function handles the submission of the google oauth JWT to the server. 
+     * If successful by the user will be redirected to the counter page 
+     * if not the user will be redirected to the signup page to create an account
+     */
     const handleOAuthSubmit = async (credentialResponse) => {
         try {
             setLoading(true);

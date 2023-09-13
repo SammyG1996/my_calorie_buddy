@@ -61,6 +61,13 @@ const SignUpForm = () => {
         createUser();
     }
 
+    /**
+     * This function handles the extraction of information from the JWT.
+     * Once the data is extracted it will be manually updated into the form fields. 
+     * All fields will then be hidden using the oauthAlert var. 
+     * The only 2 fields left are the pw and confirm-pw. 
+     * An alert then appears to tell the users to enter a PW to finish submision. Then they are redirected to signin
+     */
     const handleOAuthSubmit = (credentialResponse) => {
         const {credential} = credentialResponse;
         const decodedJWT = jwt_decode(credential);
