@@ -5,7 +5,6 @@ import {BiLoader} from 'react-icons/bi'
 import { IconContext } from 'react-icons';
 import NutritionApi from './helpers/NutritionApi';
 import FoodSearchForm from './forms/FoodSearchForm';
-import DateForm from './forms/DateForm';
 import Datepicker from "react-tailwindcss-datepicker"; 
 
 
@@ -133,7 +132,7 @@ const Counter = () => {
                     </div>
 
                     <div className='bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-5 m-2 shadow-md flex justify-center items-center mt-1 mb-5'>
-                        {/* <DateForm date={date} setDate={setDate} /> */}
+                        {/* This is where the manual MACRO adder is going */}
                     </div>
 
                     {logs.map((log) => {

@@ -3,8 +3,8 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { IsLoggedInContext } from '../App';
 import {v4 as uuid} from 'uuid'
 import NutritionApi from './helpers/NutritionApi';
-import DateForm from './forms/DateForm';
 import FoodSearchForm from './forms/FoodSearchForm';
+import Datepicker from "react-tailwindcss-datepicker"; 
 
 
 
@@ -16,7 +16,16 @@ const SearchData = () => {
     const data = location.state;
     const [date, setDate] = useState(formattedDate)
     const navigate = useNavigate();
+    const [value, setValue] = useState({ 
+        startDate: date,
+        endDate: date 
+        }); 
 
+        const handleValueChange = (newValue) => {
+            setValue(newValue); 
+            setDate(newValue.startDate)
+            } 
+        
         const handleButtonClick = (e) => {
             const getData = async () => {
                 /**This retrives all the data attributes from the button and puts it in an object to send in the request */
@@ -36,7 +45,7 @@ const SearchData = () => {
                     username, 
                     date : `${date}`
                 }
-                console.log(data)
+                // console.log(data)
                 try {
                         await NutritionApi.addFoodToLog(username, data);
                         navigate("/counter")
@@ -67,14 +76,18 @@ const SearchData = () => {
                                 <div key={uuid()} className='flex flex-col bg-white bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-5 m-2 shadow-lg animate-fade-up animate-once animate-duration-[1000ms] animate-ease-out animate-normal animate-fill-forwards '>
                                     <h2 className='ml-2 text-[#102E4A] text-[1.5rem]'>{item.name}</h2>
                                     <div className='flex items-center justify-center h-full bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-2 m-2 shadow-md mt-1 mb-1'>
-                                        <p className='m-2 text-[#102E4A]'><span className='text-[#715AFF] text-[1rem]'>Calories:</span> {item.calories}</p>
-                                        <p className='m-2 text-[#102E4A]'><span className='text-[#715AFF] text-[1rem]'>Protein:</span> {item.protein_g}g</p>
+                                        <p className='m-2 text-[#102E4A]'><span className='text-[#715AFF] text-[1rem]'>Kcal:</span> {item.calories}</p>
+                                        <p className='m-2 text-[#102E4A]'><span className='text-[#715AFF] text-[1rem]'>Prot:</span> {item.protein_g}g</p>
                                         <p className='m-2 text-[#102E4A]'><span className='text-[#715AFF] text-[1rem]'>Carb:</span> {item.carbohydrates_total_g}g</p>
                                         <p className='m-2 text-[#102E4A]'><span className='text-[#715AFF] text-[1rem]'>Fat:</span> {item.fat_total_g}g</p>
-                                        <p className='m-2 text-[#102E4A]'><span className='text-[#715AFF] text-[1rem]'>Serving Size:</span> {item.serving_size_g}g</p>
+                                        <p className='m-2 text-[#102E4A]'><span className='text-[#715AFF] text-[1rem]'>Serving:</span> {item.serving_size_g}g</p>
                                     </div>
                                     <div className='bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-2 m-2 shadow-md flex justify-center items-center mt-1'>
-                                        <DateForm date={date} setDate={setDate} />
+                                        <Datepicker 
+                                            asSingle={true} 
+                                            value={value} 
+                                            onChange={handleValueChange}
+                                            /> 
                                     </div>
                                     
                                     <button data-name={item.name} 
