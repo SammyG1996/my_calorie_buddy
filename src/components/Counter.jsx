@@ -111,6 +111,7 @@ const Counter = () => {
                                 value={value} 
                                 onChange={handleValueChange} 
                                 placeholder={date}
+                                onFocus={(e) => e.target.readOnly = true}
                                 /> 
                         </div>
 
