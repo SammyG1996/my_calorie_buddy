@@ -56,7 +56,7 @@ const Home = () => {
             </div>}
 
 
-            {!loading && <div className='bg-white bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 p-5 md:p-10 shadow-xl rounded-lg h-[50vh] md:h-[60vh] max-w-[1000px] w-[90vw] md:w-[50vw]  flex justify-center items-center animate-fade-up animate-once animate-duration-[2000ms] animate-ease-out animate-normal animate-fill-forwards'>
+            {!loading && <div className='bg-white bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 p-5 md:p-10 shadow-xl rounded-lg h-[50vh] md:h-[60vh] max-w-[1000px] w-[92vw] md:w-[50vw]  flex justify-center items-center animate-fade-up animate-once animate-duration-[2000ms] animate-ease-out animate-normal animate-fill-forwards'>
                 <div>
                     <img className='w-[100vw] mx-auto md:w-[35vw]' src={Logo} alt="logo img" />
                     {isLoggedIn ? <h1 className='text-center mt-5 mb-2 text-xl md:text-2xl text-white'>Welcome Back {username}</h1> : <h1 className='text-center mt-5 mb-2 text-2xl md:text-3xl text-white'>Meet your new buddy!</h1>}
