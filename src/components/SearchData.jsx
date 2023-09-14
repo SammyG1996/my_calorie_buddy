@@ -73,6 +73,7 @@ const SearchData = () => {
      */
     const handleModalSelector = (e) =>{
             const foodName = e.target.dataset.name;
+            setInput({...input, servings : e.target.dataset.serving})
             setSelectedFoodItem(foodName);
             setModal(true);
 
@@ -151,6 +152,7 @@ const SearchData = () => {
                                                 className='flex items-center px-3 py-2 mx-1 bg-[#715AFF] hover:bg-[#A682FF] shadow-md rounded-lg text-white text-sm'>Add</button>
                                                 
                                                 <button data-name={item.name} 
+                                                data-serving={item.serving_size_g} 
                                                 onClick={handleModalSelector} 
                                                 className='flex items-center px-3 py-2 mx-1 bg-[#715AFF] hover:bg-[#A682FF] shadow-md rounded-lg text-white text-sm'>Update Serving</button>
 
@@ -168,7 +170,7 @@ const SearchData = () => {
                                         
                                         <form>
                                             <div className='flex justify-center my-5'>
-                                                <input placeholder='Enter new serving size' className='w-[150px] px-2' value={input.servings} onChange={handleInputUpdate} type="text" name="servings" id="servings" /><p className='self-end mr-2'>g</p>
+                                                <input placeholder='Enter new serving size' className='w-[150px] px-2' value={input.servings} onChange={handleInputUpdate} type="text" name="servings" id="servings" autocomplete="off" /><p className='self-end mr-2'>g</p>
                                                 <button 
                   
                                                 onClick={handleUpdateServings} 
