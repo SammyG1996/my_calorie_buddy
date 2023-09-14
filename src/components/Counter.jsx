@@ -18,15 +18,20 @@ const Counter = () => {
     const [totalCarbs, setTotalCarbs] = useState(0)
     const [totalFats, setTotalFats] = useState(0)
     const [value, setValue] = useState({ 
-        startDate: null,
-        endDate: null 
+        startDate: date,
+        endDate: date 
         }); 
 
     const navigate = useNavigate();
         
     const handleValueChange = (newValue) => {
-        setValue(newValue); 
-        setDate(newValue.startDate)
+        const {startDate, endDate} = newValue;
+        // This prevents date from getting set to null
+        if(startDate !== null && endDate !== null){
+            setValue(newValue); 
+            setDate(newValue.startDate)
+        }
+
         } 
 
     const updateNutrients = (items) => {
@@ -103,9 +108,9 @@ const Counter = () => {
                 
 
                 <div className='bg-white bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 my-20 rounded-lg flex shadow-lg flex-col w-[98%] max-w-[750px] px-5 md:px-10 py-5'>
-                    <div className='flex flex-row justify-center'>
-                        <h1 className='text-[1.5rem] text-[#102E4A] text-center font-black'>Food Log:</h1>
-                        <div className='w-[150px] mx-2'>
+
+                    <div className='flex flex-col justify-center items-center bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-5 m-2 shadow-md'>
+                        <div className='w-full md:w-[150px] mb-3 z-50 '>
                             <Datepicker 
                                 asSingle={true} 
                                 value={value} 
@@ -115,22 +120,24 @@ const Counter = () => {
                                 /> 
                         </div>
 
+                        <div className='flex flex-row justify-center mt-1 text-[1rem]'>
+                            <p className='ml-1 mr-1 text-[#102E4A]'><span className='text-[#715AFF] font-black'>Calories:</span> {totalCalories}g</p>
+                            <p className='ml-1 mr-1 text-[#102E4A]'><span className='text-[#715AFF] font-black'>Protein:</span> {totalProtein}g</p>
+                            <p className='ml-1 mr-1 text-[#102E4A]'><span className='text-[#715AFF] font-black'>Carbs:</span> {totalCarbs}g</p>
+                            <p className='ml-1 mr-1 text-[#102E4A]'><span className='text-[#715AFF] font-black'>Fats:</span> {totalFats}g</p>
+                        </div>
+
                     </div>
 
-                    
-                    <div className='bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200  rounded-lg p-5 m-2 shadow-md flex'>
-                     <FoodSearchForm />
+                    <div className='bg-white bg-opacity-50  rounded-lg p-5 m-2 shadow-md flex'>
+                        <FoodSearchForm />
                     </div>
                     
                     
                     {/* <h2 className='text-[1.5rem] text-cyan-700 text-center mt-2'>Macro Totals:</h2> */}
 
-                    <div className='bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-5 m-2 shadow-md flex flex-row justify-center px-5 mt-1 text-[1rem]'>
-                        <p className='ml-1 mr-1 text-[#102E4A]'><span className='text-[#715AFF] font-black'>Calories:</span> {totalCalories}g</p>
-                        <p className='ml-1 mr-1 text-[#102E4A]'><span className='text-[#715AFF] font-black'>Protein:</span> {totalProtein}g</p>
-                        <p className='ml-1 mr-1 text-[#102E4A]'><span className='text-[#715AFF] font-black'>Carbs:</span> {totalCarbs}g</p>
-                        <p className='ml-1 mr-1 text-[#102E4A]'><span className='text-[#715AFF] font-black'>Fats:</span> {totalFats}g</p>
-                    </div>
+
+
 
                     {/* <div className='bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-5 m-2 shadow-md flex justify-center items-center mt-1 mb-5'> */}
                         {/* This is where the manual MACRO adder is going */}
@@ -138,7 +145,7 @@ const Counter = () => {
 
                     {logs.map((log) => {
                         return (
-                            <div key={log.id} className='bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200 mt-1 rounded-lg p-5 m-2 shadow-md flex mb-1'>
+                            <div key={log.id} className='bg-white bg-opacity-50 mt-1 rounded-lg p-5 m-2 shadow-md flex mb-1'>
                                 <div className='flex flex-col'>
                                     <h2 className='text-[#102E4A] text-[1.5rem]'>{log.name}</h2>
                                     <div className='flex flex-row items-end'>
