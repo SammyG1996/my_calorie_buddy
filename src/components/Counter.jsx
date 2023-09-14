@@ -132,9 +132,9 @@ const Counter = () => {
                         <p className='ml-1 mr-1 text-[#102E4A]'><span className='text-[#715AFF] font-black'>Fats:</span> {totalFats}g</p>
                     </div>
 
-                    <div className='bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-5 m-2 shadow-md flex justify-center items-center mt-1 mb-5'>
+                    {/* <div className='bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-5 m-2 shadow-md flex justify-center items-center mt-1 mb-5'> */}
                         {/* This is where the manual MACRO adder is going */}
-                    </div>
+                    {/* </div> */}
 
                     {logs.map((log) => {
                         return (
