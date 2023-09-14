@@ -5,6 +5,7 @@ import {v4 as uuid} from 'uuid'
 import NutritionApi from './helpers/NutritionApi';
 import FoodSearchForm from './forms/FoodSearchForm';
 import Datepicker from "react-tailwindcss-datepicker"; 
+import { BsFillXCircleFill, BsCheckCircleFill } from "react-icons/bs";
 
 
 
@@ -26,9 +27,14 @@ const SearchData = () => {
 
     /** This updates the state that controls the date picker */
     const handleValueChange = (newValue) => {
-            setValue(newValue); 
-            setDate(newValue.startDate)
-            } 
+            const {startDate, endDate} = newValue;
+            // This prevents date from getting set to null
+            if(startDate !== null && endDate !== null){
+                setValue(newValue); 
+                setDate(newValue.startDate)
+            }
+
+        } 
     
     /** This submits the data to add the food to the database and redirects to counter page */
     const handleButtonClick = (e) => {
@@ -99,7 +105,7 @@ const SearchData = () => {
     return (
         <div className='w-full h-screen'>
             <div className='flex mt-10 justify-center w-full'>
-                <div className='flex mt-20 bg-white bg-opacity-50 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-5 m-2 shadow-lg w-[100%] max-w-[750px]'>
+                <div className='flex mt-20 bg-white bg-opacity-50 rounded-lg p-5 m-2 shadow-lg w-[100%] max-w-[735px]'>
                     <FoodSearchForm />
                 </div>
                 
@@ -130,6 +136,7 @@ const SearchData = () => {
                                                     value={value} 
                                                     onChange={handleValueChange}
                                                     readOnly={true}
+                                                    placeholder={date}
                                                     /> 
                                             </div>
 
@@ -146,6 +153,7 @@ const SearchData = () => {
                                                 <button data-name={item.name} 
                                                 onClick={handleModalSelector} 
                                                 className='flex items-center px-3 py-2 mx-1 bg-[#715AFF] hover:bg-[#A682FF] shadow-md rounded-lg text-white text-sm'>Update Serving</button>
+
                                             </div>
                                         </div>
                                     </div>
@@ -164,7 +172,11 @@ const SearchData = () => {
                                                 <button 
                   
                                                 onClick={handleUpdateServings} 
-                                                className='flex items-center px-3 py-2 mx-1 bg-[#715AFF] hover:bg-[#A682FF] shadow-md rounded-lg text-white text-sm'>Update Serving</button>
+                                                className='flex items-center px-3 py-2 mr-1 bg-[#715AFF] hover:bg-[#A682FF] shadow-md rounded-lg text-white text-sm'><BsCheckCircleFill /></button>
+
+                                                <button 
+                                                onClick={()=> setModal(false)} 
+                                                className='flex items-center px-3 py-2  bg-[#715AFF] hover:bg-[#A682FF] shadow-md rounded-lg text-white text-sm'><BsFillXCircleFill /></button>
                                             </div>
 
                                         </form>

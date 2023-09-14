@@ -6,6 +6,7 @@ import { IconContext } from 'react-icons';
 import NutritionApi from './helpers/NutritionApi';
 import FoodSearchForm from './forms/FoodSearchForm';
 import Datepicker from "react-tailwindcss-datepicker"; 
+import { BsFillTrashFill } from "react-icons/bs";
 
 
 const Counter = () => {
@@ -78,6 +79,7 @@ const Counter = () => {
                 const getData = async () => {
                     const {items} = await NutritionApi.getItems(username, date);
                     setLogs(items)
+                    console.log(items)
                     updateNutrients(items)
                     setLoading(false)
                     
@@ -148,13 +150,15 @@ const Counter = () => {
                             <div key={log.id} className='bg-white bg-opacity-50 mt-1 rounded-lg p-5 m-2 shadow-md flex mb-1'>
                                 <div className='flex flex-col'>
                                     <h2 className='text-[#102E4A] text-[1.5rem]'>{log.name}</h2>
+                                    <p className='mr-3'><span className='text-[#715AFF] text-[1em]'>Calories: </span>{log.calories.toFixed(1)}kcal</p>
                                     <div className='flex flex-row items-end'>
-                                        <p className='mr-3'><span className='text-[#715AFF] text-[1em]'>Calories: </span>{log.calories.toFixed(1)}kcal</p>
+                                        
                                         <p className='mr-3'><span className='text-[#715AFF] text-[1em]'>Protein: </span>{log.protein.toFixed(1)}g</p>
                                         <p className='mr-3'><span className='text-[#715AFF] text-[1em]'>Carbs: </span>{log.carbs.toFixed(1)}g</p>
-                                        <p><span className='text-[#715AFF] text-[1em]'>Fats: </span>{log.fats.toFixed(1)}g</p>
+                                        <p className='mr-3'><span className='text-[#715AFF] text-[1em]'>Fats: </span>{log.fats.toFixed(1)}g</p>
+                                        <p><span className='text-[#715AFF] text-[1em]'>Serving: </span>{log.servingSize}g</p>
                                     </div>
-                                    <button className='mt-2 px-2 py-1 w-[75px] bg-[#715AFF] hover:bg-[#A682FF] shadow-md rounded-lg text-white' onClick={()=>handleButtonClick(log.id)}>Delete</button>
+                                    <button className='mt-2 px-3 py-2 w-[40px] bg-[#715AFF] hover:bg-[#A682FF] shadow-md rounded-lg text-white' onClick={()=>handleButtonClick(log.id)}><BsFillTrashFill /></button>
                                 </div>
                             </div>
                         )
