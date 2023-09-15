@@ -4,7 +4,7 @@ Link to nutrition API: https://api-ninjas.com/api/nutrition
 
 Link to backend API that handles the database: https://github.com/SammyG1996/my_calorie_buddy_NodeJS
 
-## Exciting Updates
+## Exciting Updates 📲
 
 Hey everyone, I'm thrilled to share some exciting updates about the ongoing transformation of "My Calorie Buddy's" backend architecture, and I'd absolutely love to hear your thoughts and suggestions!
 
