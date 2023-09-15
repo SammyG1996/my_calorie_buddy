@@ -14,7 +14,7 @@ Not only does this approach impact performance, but it also leaves my data relat
 
 Here's a sneak peek at the structure I have in mind: I'll have a "User" collection that houses all my individual users. Within each document, you'll discover all the pertinent user information neatly organized. Plus, I'm keeping things tidy by utilizing objects throughout the document for any elements that can be deleted. This design shift ensures that Creating, Reading, Updating, and Deleting operations will be lightning-fast at O(1).
 
-## ___________________________________________________
+##
 
 
 ## My Calorie Buddy is a calorie counting application that was created to showcase my ability as a full-stack engineer. 
