@@ -11,12 +11,12 @@ import Alert from './components/Alert';
 import Profile from './components/Profile';
 import NutritionApi from './components/helpers/NutritionApi';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import {googleKey, googleSecret} from '../src/config/googleOauth'
+import {googleKey} from './config/googleOauth'
 
 
 
 
-export const IsLoggedInContext = createContext()
+export const IsLoggedInContext = createContext<object>({})
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -48,7 +48,7 @@ function App() {
     const user = sessionStorage.getItem('username');
     if(token){
       updateToken(token);
-      updatedIsLoggedIn(true);
+      updatedIsLoggedIn();
       updateUsername(user);
       NutritionApi.token = token;
       NutritionApi.bearer_token_req = {
