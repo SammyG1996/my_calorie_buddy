@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { IsLoggedInContext } from '../App';
 import {v4 as uuid} from 'uuid'
@@ -6,12 +6,14 @@ import NutritionApi from './helpers/NutritionApi';
 import FoodSearchForm from './forms/FoodSearchForm';
 import Datepicker from "react-tailwindcss-datepicker"; 
 import { BsFillXCircleFill, BsCheckCircleFill } from "react-icons/bs";
+import { Select, Option } from "@material-tailwind/react";
 
 
 
 
 const SearchData = () => {
-    
+
+    const [mealTime, setMealTime] = useState(null);
     const {username, formattedDate} = useContext(IsLoggedInContext);
     const location = useLocation();
     const data = location.state;
@@ -24,6 +26,20 @@ const SearchData = () => {
         endDate: date 
         }); 
     const [modal, setModal] = useState(false); /**controls whether the modal is shown or not */
+
+    // This will get the meal time to set the mealTimeState
+    useEffect(()=>{
+        const currDate = new Date(); 
+        const hour = currDate.getHours()
+        console.log(hour)
+        if(hour < 11){
+            setMealTime('breakfast'); 
+        } else if(hour >= 11 && hour < 16){
+            setMealTime('lunch'); 
+        } else {
+            setMealTime('dinner'); 
+        }
+    }, [])
 
     /** This updates the state that controls the date picker */
     const handleValueChange = (newValue) => {
@@ -102,6 +118,12 @@ const SearchData = () => {
     const handleInputUpdate = (e) => {
         setInput({...input, [e.target.name] : e.target.value})
     }
+
+    const handleMealTimeUpdated = (val) =>{
+        console.log(val)
+        setMealTime(val)
+
+    }
    
     return (
         <div className='w-full h-screen'>
@@ -131,14 +153,26 @@ const SearchData = () => {
                                                 <p className='m-2 text-[#102E4A]'><span className='text-[#715AFF] text-[1rem]'>Serving:</span> {item.serving_size_g}g</p>
                                             </div>
 
-                                            <div className='bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-2 m-2 shadow-md flex justify-center items-center mt-1'>
-                                                <Datepicker 
-                                                    asSingle={true} 
-                                                    value={value} 
-                                                    onChange={handleValueChange}
-                                                    readOnly={true}
-                                                    placeholder={date}
-                                                    /> 
+                                            <div className='grid grid-cols-1 md:grid-cols-2 gap-4 bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-2 m-2 shadow-md  mt-1'>
+                                                    <div className=''>
+                                                        <Datepicker 
+                                                            asSingle={true} 
+                                                            value={value} 
+                                                            onChange={handleValueChange}
+                                                            readOnly={true}
+                                                            placeholder={date}
+                                                            /> 
+                                                    </div>
+
+
+                                                    <div className="">
+                                                        <Select label="Meal Time" value={mealTime} onChange={handleMealTimeUpdated} className='bg-white'>
+                                                            <Option value='breakfast'>Breakfast</Option>
+                                                            <Option value='lunch'>Lunch</Option>
+                                                            <Option value='dinner'>Dinner</Option>
+                                                            <Option value='snack'>Snack</Option>
+                                                        </Select>
+                                                    </div>
                                             </div>
 
                                             <div className='flex flex-row justify-center mt-5'>
