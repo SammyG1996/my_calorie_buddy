@@ -153,7 +153,7 @@ const SearchData = () => {
                                                 <p className='m-2 text-[#102E4A]'><span className='text-[#715AFF] text-[1rem]'>Serving:</span> {item.serving_size_g}g</p>
                                             </div>
 
-                                            <div className='grid grid-cols-1 md:grid-cols-2 gap-4 bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-2 m-2 shadow-md  mt-1'>
+                                            <div className=' bg-white bg-opacity-0 backdrop-blur-xl backdrop-filter backdrop-saturate-200 rounded-lg p-2 m-2 shadow-md  mt-1'>
                                                     <div className=''>
                                                         <Datepicker 
                                                             asSingle={true} 
@@ -165,14 +165,14 @@ const SearchData = () => {
                                                     </div>
 
 
-                                                    <div className="">
+                                                    {/* <div className="">
                                                         <Select label="Meal Time" value={mealTime} onChange={handleMealTimeUpdated} className='bg-white'>
                                                             <Option value='breakfast'>Breakfast</Option>
                                                             <Option value='lunch'>Lunch</Option>
                                                             <Option value='dinner'>Dinner</Option>
                                                             <Option value='snack'>Snack</Option>
                                                         </Select>
-                                                    </div>
+                                                    </div> */}
                                             </div>
 
                                             <div className='flex flex-row justify-center mt-5'>
